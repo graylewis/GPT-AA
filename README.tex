@@ -1,0 +1,167 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{gpt-aa-gpt-3-academic-assistant}{%
+\section{GPT-AA (GPT-3 Academic
+Assistant)}\label{gpt-aa-gpt-3-academic-assistant}}
+
+GPT-AA is a set of tools for interacting with the GPT-3 API for the
+purpose of human-free open question grading. GPT-AA provides a
+constraint \& abstraction layer for interacting with GPT-3 as a
+classifier, as opposed to its classical application as a purely
+generative AI.
+
+\hypertarget{core-concepts}{%
+\section{Core Concepts}\label{core-concepts}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Examples
+\end{enumerate}
+
+\begin{itemize}
+\item
+  ``Given any text prompt, the API will return a text completion,
+  attempting to match the pattern you gave it. You can ``program'' it by
+  showing it just a few examples of what you'd like it to do; its
+  success generally varies depending on how complex the task is. The API
+  also allows you to hone performance on specific tasks by training on a
+  dataset (small or large) of examples you provide, or by learning from
+  human feedback provided by users or labelers."
+\item
+  GPT-3 is a general AI, meaning that it is capable of a wide variety of
+  tasks. In our case, we are looking to use GPT-3 as a classification
+  algorithm.
+\item
+  Using GPT-3 is only permitted through integration with its API. Since
+  GPT-3 can parse english, feeding it a handful of examples is
+  sufficient information for GPT-3 to infer deep levels of context and
+  meaning from both the labels and the examples.
+\item
+  This means, for example, that GPT-3 can interpolate between scores
+  i.e.~GPT-3 could be fed examples of a 0/10, 5/10, and a 10/10 and be
+  able to infer what a 3/10 or 7/10 would look like.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The Config File
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  genConfig.py is a convenience tool for inputting these training
+  examples into the required format for classification. Essentially,
+  genConfig.py will ask for a series of answers at specific scores, and
+  then store them in an appropriately formated JSON file. Any (sensible)
+  novel answer can be scored against a generated configuration file.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  GPT-3 Remote File Upload
+\end{enumerate}
+
+\begin{itemize}
+\item
+  In order to maximize accuracy, GPT-3 requires the examples to be
+  stored remotely on the OpenAI server. The file outputted by
+  genConfig.py is formatted in line with OpenAI's standard.
+\item
+  uploadFile.py is a convenience tool for rapidly uploading the output
+  of genConfig.py (by default saved to ``gpt3Config.json''). After
+  uploading, the program will return the metadata necessary to point to
+  the remotely hosted file. The ``id'' field of the metadata output will
+  ultimately be used as an input into the querying program.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Queries
+\end{enumerate}
+
+\begin{itemize}
+\item
+  After uploading a configuration file and saving its corresponding id,
+  the main program is ready to be used. Index.py is the entry point for
+  the primary functionality. Index.py accepts 2 primary command line
+  arguments:
+
+  \begin{itemize}
+  \item
+    -f=``fileId'' or --file=``fileId'' This argument provides a file ID
+    to be referenced by the classification function, and corresponds the
+    the output of uploadFile.py. e.g.~\textgreater\textgreater{} python
+    index.py --file=``file-ksfjdskajfkjKXJKF''
+  \item
+    -q=``Answer to be graded'' or --query=``Answer to be graded'' This
+    argument provides an answer to be graded against the configuration
+    file's examples. e.g.~\textgreater\textgreater{} python index.py
+    --query="This is th
+  \end{itemize}
+\end{itemize}
+
+\end{document}
