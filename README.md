@@ -2,6 +2,16 @@
 
 GPT-AA is a set of tools for interacting with the GPT-3 API for the purpose of human-free open question grading. GPT-AA provides an constraint & abstraction layer for interacting with GPT-3 as a classifier, as opposed to its classical application as a purely generative AI. 
 
+# Setup
+
+GPT-AA uses pipenv for managing project dependencies. To install pipenv, run the following command in pip:
+```pip install pipenv```
+
+Subsequently, the dependecies required to run GPT-AA can be installed using the following command:
+```pipenv install```
+
+You're good to go! The next section outlines the role of each of the python scripts in interacting with GPT-AA. 
+
 # Core Concepts
 
 1. Examples
