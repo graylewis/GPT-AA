@@ -1,6 +1,8 @@
+README by Echo Mulder, Gray Lewis and Nick Lodder
+
 # GPT-AA (GPT-3 Academic Assistant)
 
-Contributors: Echo Mulder, Gray Lewis, and Nick Lodder
+Project ontributors: Echo Mulder, Gray Lewis, and Nick Lodder
 
 GPT-AA is a set of tools for interacting with the GPT-3 API for the purpose of human-free open question grading. GPT-AA provides an constraint & abstraction layer for interacting with GPT-3 as a classifier, as opposed to its classical application as a purely generative AI. 
 
