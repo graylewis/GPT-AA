@@ -33,15 +33,15 @@ You're good to go! The next section outlines the role of each of the python scri
     * e.g. {"text": "Data types in python include, blek, smhleck, and zek.", "label": "0/10"}
 
 3. GPT-3 Remote File Upload
-  * In order to maximize accuracy, GPT-3 requires the examples to be stored remotely on the OpenAI server. The file outputted by genConfig.py is formatted in line with OpenAI's standard.
+  * In order to maximize accuracy, GPT-AA uses GPT-3's most advanced classification model, which requires the examples to be stored remotely on the OpenAI server. The file outputted by genConfig.py is formatted in line with OpenAI's standard.
 
-  * uploadFile.py is a convenience tool for rapidly uploading the output of genConfig.py (by default saved to "gpt3Config.json"). After uploading, the program will return the metadata necessary to point to the remotely hosted file. The "id" field of the metadata output will ultimately be used as an input into the querying program. uploadFile.py supports 1 command line argument:"
+  * uploadFile.py is a convenience tool for uploading the output of genConfig.py (by default saved to "gpt3Config.json"), or any JSONLINES file that conforms to the standard outlined above. After uploading, the program will return the metadata necessary to point to the remotely hosted file. The "id" field of the metadata output will ultimately be used as an input into the querying program. IMPORTANT!: After uploading the file, uploadFile.py will return a file id that will need to be recorded for use in the primary script. uploadFile.py supports 1 command line argument:"
 
     * -f="filePath" or --file="filePath"
-    This argument provides a custom path for the file being uploaded. If not specified, uploadFile.py will assume the configuration file is locatied at "./gpt3Config.json", the output file name for genConfig.py.
+    This argument provides a custom path for the file being uploaded. If not specified, uploadFile.py will assume the configuration file is located at "./gpt3Config.json", the output file name for genConfig.py.
 
 4. Queries
-  * GPT-3 refers to inputs to the AI as "queries". In this case, our query is the answer we want to be graded based on the implicit rubric created by the configuration file. 
+  * GPT-3 refers to inputs to the AI as "queries". In this case, our query is the answer we want to be graded based on the implicit rubric created by the    configuration file. 
 
   * After uploading a configuration file and saving its corresponding id, the main program is ready to be used. 
   Index.py is the entry point for the primary functionality. Index.py accepts 2 primary command line arguments:
