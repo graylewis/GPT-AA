@@ -14,6 +14,9 @@ GPT-AA uses pipenv for managing project dependencies. To install pipenv, run the
 Subsequently, the dependecies required to run GPT-AA can be installed using the following command:
 ```pipenv install```
 
+And finally each python script can then be executed inside the Pipenv shell. The pipenv shell can be accessed with ```pipenv shell``` and then the scripts can be executed normally, or an individual program can be run with
+```pipenv run python script.py```
+
 You're good to go! The next section outlines the role of each of the python scripts in interacting with GPT-AA. 
 
 # Core Concepts

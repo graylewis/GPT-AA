@@ -34,4 +34,4 @@ except Exception as e:
   print("Error while writing to %s" % (outputFile))
   print(e)
 finally:  
-  file.close()    
+  file.close()
