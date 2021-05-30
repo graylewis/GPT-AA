@@ -17,9 +17,13 @@ example_answers = []
 #Loop that allows the teacher to store 5 example answers, ranging in their score from 0/10 to 10/10 in increments of 2. 
 for i in range(6):
   score = '%s/10' % (i*2)
-  new_answers = input('Example of an %s answer:' % (score))
+  new_answer = input('Example of an %s answer:' % (score))
+  while len(new_answer) == 0:
+    print("Empty answers are not valid. Please try again.")
+    new_answer = input('Example of an %s answer:' % (score))
+    
   example_answers.append({
-    'text': new_answers,
+    'text': new_answer,
     'label': score
   })
 
