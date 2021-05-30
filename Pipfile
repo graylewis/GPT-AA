@@ -7,7 +7,7 @@ name = "pypi"
 jsonlines = "*"
 openai = "*"
 requests = "*"
-decouple = "*"
+python-decouple = "*"
 
 [dev-packages]
 
