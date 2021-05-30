@@ -33,11 +33,19 @@ try:
   userQuery
 except:
   userQuery = input("Please provide a query: ")
+  while len(userQuery) == 0:
+    print("An empty query is not valid. Please try again.")
+    userQuery = input('Please provide a query: ')
+    
 
 try:
   fileId
 except:
   fileId = input("Please provide an ID for your config file: ")
+  while len(fileId) == 0:
+    print("An empty ID is not valid. Please try again.")
+    fileId = input('Please provide an ID for your config file: ')
+    
 # END COMMAND LINE PARSING
 
 # API AUTHENTICATION
@@ -62,7 +70,9 @@ r = requests.post('https://api.openai.com/v1/classifications', data=json.dumps(b
 # PARSE RESPONSE
 responseBody = r.json();
 
-print(responseBody)
+if responseBody["error"]:
+  print("There was a problem with your configuration.")
+  print(responseBody["error"]["message"])
 
-# OUTPUT
-print("Query Submitted: %s \nGrade: %s" % (body["query"], responseBody['label']))
+else:
+  print("Query Submitted: %s \nGrade: %s" % (body["query"], responseBody['label']))
