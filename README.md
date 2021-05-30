@@ -61,10 +61,11 @@ You're good to go! The next section outlines the role of each of the python scri
     This argument provides a custom path for the file being uploaded. If not specified, uploadFile.py will assume the configuration file is located at "./gpt3Config.json", the output file name for genConfig.py.
 
 4. Queries
-  * GPT-3 refers to inputs to the AI as "queries". In this case, our query is the answer we want to be graded based on the implicit rubric created by the    configuration file. 
+  * GPT-3 refers to inputs to the AI as "queries". In this case, our query is the answer we want to be graded based on the implicit rubric created by the configuration file. 
 
-  * After uploading a configuration file and saving its corresponding id, the main program is ready to be used. 
-  Index.py is the entry point for the primary functionality. Index.py accepts 2 primary command line arguments:
+  * After uploading a configuration file and saving its corresponding id, the main program is ready to be used.
+
+  * Index.py is the entry point for the primary functionality. Index.py accepts 2 primary command line arguments:
     
     * -f="fileId" or --file="fileId"
     This argument provides a file ID to be referenced by the classification function, and corresponds the the output of uploadFile.py.
@@ -73,6 +74,8 @@ You're good to go! The next section outlines the role of each of the python scri
     * -q="Answer to be graded" or --query="Answer to be graded"
     This argument provides an answer to be graded against the configuration file's examples. 
     e.g. >> python index.py --query="This is the answer to be graded"
+
+  * Index.py also defaults to prompts when command lines arguments are not provided, although arguments are the preferred way to input the parameters.
 
 # Technical Advancements
 
