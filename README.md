@@ -71,3 +71,14 @@ You're good to go! The next section outlines the role of each of the python scri
     * -q="Answer to be graded" or --query="Answer to be graded"
     This argument provides an answer to be graded against the configuration file's examples. 
     e.g. >> python index.py --query="This is the answer to be graded"
+
+# Technical Advancements
+
+This section will aim to clarify which pieces of GPT-AA can be considered advancements in terms of interacting with GPT-3. 
+
+1. Testing - GPT-AA is the result of hundreds of iterations of formats and approaches that ultimately taught us valuable lessons about which situations GPT-3 can operate most effectively as a classifier. For example, several approaches to actually inputting and outputting examples to GPT-3 were used before the on-site classification set approach was settled upon.
+    * Other criterion we identified as important include:
+      * The range of labels (scores) being considered; A scale of 1-10 strikes a balance between flexibility and introduction of noise through the consideration of too many potential labels. 
+      * The inclusion/non-inclusion of the question being answered; while GPT-3 demonstrates impressive results WITHOUT examples (only based on the question), we found that including the question when examples were considered tended to lead to less accurate results.
+2. Ease of Use & Flexibility - While most applications built with the GPT-3 API are focused on creating tools for completely non-technical people, we wanted to build a certain level of flexibility into the tool while still providing intuitive tools for bridging the gap between technical and non-technical users. An example of this flexibility is the intentional decision to avoid the use of GUIs. 
+3. Novel Application 
