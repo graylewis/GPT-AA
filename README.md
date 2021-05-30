@@ -10,16 +10,16 @@ GPT-AA is a set of tools for interacting with the GPT-3 API for the purpose of h
   * GPT-3 is a general AI, meaning that it is capable of a wide variety of tasks. In our case, we are looking to use GPT-3 as a classification algorithm. 
 
   * Using GPT-3 is only permitted through integration with its API. Since GPT-3 can parse english, feeding it a handful of examples is sufficient
-  information for GPT-3 to infer deep levels of context and meaning from both the labels and the examples.
+  information for GPT-3 to infer deep levels of context and meaning from both the labels and the examples and form an implicit rubric based on the qualities of the examples and their relation to the labels.
 
   * This means, for example, that GPT-3 can interpolate between scores i.e. GPT-3 could be fed examples of a 0/10, 5/10, and a 10/10 and be able to infer what a 3/10 or 7/10 would look like. 
   
 2. The Config File
   * tl;dr The examples being provided in the form of a JSON file form an implicit rubric which GPT-3 uses to grade novel answers. It's important to note that usage of the tool does NOT eliminate human bias from the grading process since the training process relies on human-generated input both for the formation of the implicit rubric and the pre-training of the GPT-3 model. 
 
-  * genConfig.py is a convenience tool for inputting these training examples into the required format for classification. Essentially, genConfig.py will ask for a series of answers at specific scores, and then store them in an appropriately formatted JSON file. Any (sensible) novel answer can be scored against a generated configuration file. 
+  * genConfig.py is a convenience tool for inputting these training examples into the required format for classification. Essentially, genConfig.py will ask for a series of answers at specific scores, and then store them in an appropriately formatted JSON file. Any (sensible) novel answer can be scored against a generated configuration file. In order to simplify the process, genConfig.py always asks for 5 answers at specified scores. While this is generally sufficient to get decent grading, high quality grading is much more likely when creating a dataset based off of real answers and real corresponding grades. 
 
-  * Manual creation of a config file is relatively straightforward, and is required for maximum accuracy. The expected format is a JSONLINES (https://jsonlines.readthedocs.io/en/latest/) file where each line is a self-contained JSON-compliant object with a field called "text" and a field called "label", where the text field is the answer and the label is the associated score. 
+  * Manual creation of a config file is relatively straightforward, and can improve accuracy by specifying more examples where needed. The expected format is a JSONLINES (https://jsonlines.readthedocs.io/en/latest/) file where each line is a self-contained JSON-compliant object with a field called "text" and a field called "label", where the text field is the answer and the label is the associated score. 
     * e.g. {"text": "Data types in python include, blek, smhleck, and zek.", "label": "0/10"}
 
 3. GPT-3 Remote File Upload
