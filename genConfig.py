@@ -41,5 +41,6 @@ try:
 except Exception as e:
   print("Error while writing to %s" % (outputFile))
   print(e)
-finally:  
+finally:
+  print("The configuration file has been saved to gpt3Config.json. In order to upload this file to the OpenAI server for use, please use the uploadFile.py utility.")
   file.close()
