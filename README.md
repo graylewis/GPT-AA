@@ -4,7 +4,9 @@ README by Echo Mulder, Gray Lewis and Nick Lodder
 
 Project ontributors: Echo Mulder, Gray Lewis, and Nick Lodder
 
-GPT-AA is a set of tools for interacting with the GPT-3 API for the purpose of human-free open question grading. GPT-AA provides an constraint & abstraction layer for interacting with GPT-3 as a classifier, as opposed to its classical application as a purely generative AI. 
+GPT-AA is a set of tools for interacting with the GPT-3 API for the purpose of human-free open question grading. GPT-AA provides an constraint & abstraction layer for interacting with GPT-3 as a few-shot classifier, as opposed to its classical application as a purely generative AI. 
+
+Usage of the tool does NOT eliminate human bias from the grading process since the training process relies on human-generated input both for the formation of the implicit rubric and the pre-training of the GPT-3 model. This can be partially alleviated by strictly following an existing rubric when creating the few-shot training examples. 
 
 # Setup
 

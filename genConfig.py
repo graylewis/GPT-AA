@@ -6,7 +6,7 @@ import jsonlines
 outputFile = "gpt3Config.json"
 
 #Creating a variable for the exam question.
-question = input('Dear teacher, welcome to our smart grading programme!\n Please enter the exam question to be graded:')
+question = input('Dear teacher, welcome to our smart grading programme!\nPlease enter the exam question to be graded: ')
 
 #Making the code user friendly.
 print('We are off to a great start! Now, in order to help you grade exam answers from students, we will ask you for example answers to this question with different scores.\n')

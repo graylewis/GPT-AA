@@ -33,7 +33,7 @@ except:
 
 openai.api_key = api_key
 file = openai.File.create(
-  file=open("gpt3Config.json"),
+  file=open(file_name),
   purpose='classifications'
 )
 
