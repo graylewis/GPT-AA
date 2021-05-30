@@ -16,7 +16,7 @@ long_options=["query=", "file="]
 try:
     arguments, values = getopt.getopt(argument_list, short_options, long_options)
 except getopt.error as err:
-    # Output error, and return with an error code
+    # Output an error to the command line
     print (str(err))
     sys.exit(2)
 
@@ -29,6 +29,7 @@ try:
 except:
   file_name = "gtp3Config.json"
   print("Defaulting to gpt3Config.json. To provide a different config file to be uploaded, please use the -f=FILE_NAME argument.")
+# END COMMAND LINE PARSING
 
 openai.api_key = api_key
 file = openai.File.create(
@@ -37,4 +38,5 @@ file = openai.File.create(
 )
 
 print(file)
+print("IMPORTANT: THE FOLLOWING ID NEEDS TO BE SAVED FOR REFERENCE.")
 print("The ID of the file that was uploaded is %s" % (file["id"]))

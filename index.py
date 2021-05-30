@@ -1,3 +1,5 @@
+# Code written by Gray Lewis
+
 import requests
 import json
 import sys, getopt

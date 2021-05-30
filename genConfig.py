@@ -1,3 +1,6 @@
+# Code written by Echo Mulder & Nick Lodder
+# Code edited & proofread by Gray Lewis
+
 import json
 import jsonlines
 outputFile = "gpt3Config.json"
