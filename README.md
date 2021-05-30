@@ -1,12 +1,14 @@
-README by Echo Mulder, Gray Lewis and Nick Lodder
+_README by Echo Mulder, Gray Lewis and Nick Lodder_
+
+https://github.com/graylewis/GPT-AA
 
 # GPT-AA (GPT-3 Academic Assistant)
 
-Project ontributors: Echo Mulder, Gray Lewis, and Nick Lodder
+Project contributors: Echo Mulder, Gray Lewis, and Nick Lodder
 
-GPT-AA is a set of tools for interacting with the GPT-3 API for the purpose of human-free open question grading. GPT-AA provides an constraint & abstraction layer for interacting with GPT-3 as a few-shot classifier, as opposed to its classical application as a purely generative AI. 
+GPT-AA is a set of tools for interacting with the GPT-3 API for the purpose of human-free open question grading, and aims to provide a greatly simplified interface for semi-technical/hobbyist users. GPT-AA provides an constraint & abstraction layer for interacting with GPT-3 as a few-shot classifier, as opposed to its classical application as a purely generative AI.
 
-Usage of the tool does NOT eliminate human bias from the grading process since the training process relies on human-generated input both for the formation of the implicit rubric and the pre-training of the GPT-3 model. This can be partially alleviated by strictly following an existing rubric when creating the few-shot training examples. 
+Usage of the tool does NOT eliminate human bias from the grading process since the training process relies on human-generated input both for the formation of the implicit rubric and the pre-training of the GPT-3 model. This can be partially alleviated by strictly following an existing rubric when creating the few-shot training examples.
 
 # Setup
 
@@ -17,7 +19,14 @@ Subsequently, the dependecies required to run GPT-AA can be installed using the 
 ```pipenv install```
 
 And finally each python script can then be executed inside the Pipenv shell. The pipenv shell can be accessed with ```pipenv shell``` and then the scripts can be executed normally, or an individual program can be run with
+
 ```pipenv run python script.py```
+
+_(While this process may seem unnecessarily complicated, it is important to avoid cluttering globally installed dependencies)_
+
+Providing authentication for GPT-3's API is as simple as creating a .env file and specifying the API key within that file as follows:
+
+  ```api_key="abcdefghijklmnopqrstuvwxyz"```
 
 You're good to go! The next section outlines the role of each of the python scripts in interacting with GPT-AA. 
 
@@ -31,7 +40,7 @@ You're good to go! The next section outlines the role of each of the python scri
   * Using GPT-3 is only permitted through integration with its API. Since GPT-3 can parse english, feeding it a handful of examples is sufficient
   information for GPT-3 to infer deep levels of context and meaning from both the labels and the examples and form an implicit rubric based on the qualities of the examples and their relation to the labels.
 
-  * This means, for example, that GPT-3 can interpolate between scores i.e. GPT-3 could be fed examples of a 0/10, 5/10, and a 10/10 and be able to infer what a 3/10 or 7/10 would look like. 
+  * This means, for example, that GPT-3 can interpolate between scores i.e. GPT-3 could be fed examples of a 0/10, 5/10, and a 10/10 and be able to infer what a 3/10 or 7/10 would look like. Additionally, it means that GPT-3 can understand and hence grade for more ephemeral qualities like succinctness and clarity. 
   
 2. The Config File
   * The examples being provided in the form of a JSON file form an implicit rubric which GPT-3 uses to grade novel answers. It's important to note that usage of the tool does NOT eliminate human bias from the grading process since the training process relies on human-generated input both for the formation of the implicit rubric and the pre-training of the GPT-3 model. 
@@ -39,7 +48,7 @@ You're good to go! The next section outlines the role of each of the python scri
   * genConfig.py is a convenience tool for inputting these training examples into the required format for classification. Essentially, genConfig.py will ask for a series of answers at specific scores, and then store them in an appropriately formatted JSON file. Any (sensible) novel answer can be scored against a generated configuration file. In order to simplify the process, genConfig.py always asks for 5 answers at specified scores. While this is generally sufficient to get decent grading, high quality grading is much more likely when creating a dataset based off of real answers and real corresponding grades. 
 
   * Manual creation of a config file is relatively straightforward, and can improve accuracy by specifying more examples where needed. The expected format is a JSONLINES (https://jsonlines.readthedocs.io/en/latest/) file where each line is a self-contained JSON-compliant object with a field called "text" and a field called "label", where the text field is the answer and the label is the associated score. 
-    * e.g. {"text": "Data types in python include, blek, smhleck, and zek.", "label": "0/10"}
+    * e.g. ```{"text": "Data types in python include, blek, smhleck, and zek.", "label": "0/10"}```
 
 3. GPT-3 Remote File Upload
   * In order to maximize accuracy, GPT-AA uses GPT-3's most advanced classification model, which requires the examples to be stored remotely on the OpenAI server. The file outputted by genConfig.py is formatted in line with OpenAI's standard.
