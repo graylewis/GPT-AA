@@ -1,4 +1,5 @@
 # Code written by Gray Lewis
+# Code edited by Echo Mulder & Nick Lodder
 
 import requests
 import json

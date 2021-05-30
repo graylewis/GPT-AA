@@ -1,3 +1,6 @@
+# Code written by Gray Lewis
+# Code edited and proofread by Echo Mulder & Nick Lodder
+
 import os
 import openai
 import sys, getopt
