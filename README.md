@@ -67,11 +67,11 @@ You're good to go! The next section outlines the role of each of the python scri
 
   * Index.py is the entry point for the primary functionality. Index.py accepts 2 primary command line arguments:
     
-    * -f="fileId" or --file="fileId"
+    * -f "fileId" or --file="fileId"
     This argument provides a file ID to be referenced by the classification function, and corresponds the the output of uploadFile.py.
     e.g. >> python index.py --file="file-ksfjdskajfkjKXJKF"
 
-    * -q="Answer to be graded" or --query="Answer to be graded"
+    * -q "Answer to be graded" or --query="Answer to be graded"
     This argument provides an answer to be graded against the configuration file's examples. 
     e.g. >> python index.py --query="This is the answer to be graded"
 
